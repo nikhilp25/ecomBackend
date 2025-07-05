@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 public class ProductResponseDTO {
-    private int id;
+    private UUID id;
     private String title;
     private double price;
     private String category;
@@ -15,8 +17,8 @@ public class ProductResponseDTO {
 
     private Rating rating;
     // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }

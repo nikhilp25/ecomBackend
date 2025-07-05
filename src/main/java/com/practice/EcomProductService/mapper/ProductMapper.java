@@ -1,9 +1,9 @@
 package com.practice.EcomProductService.mapper;
 
-import com.practice.EcomProductService.dto.FakeStoreProductRequestDTO;
-import com.practice.EcomProductService.dto.FakeStoreProductResponseDTO;
-import com.practice.EcomProductService.dto.ProductRequestDTO;
-import com.practice.EcomProductService.dto.ProductResponseDTO;
+import com.practice.EcomProductService.dto.*;
+import com.practice.EcomProductService.model.Product;
+
+import java.util.List;
 
 public class ProductMapper {
     public static FakeStoreProductRequestDTO productRequestToFakeStoreProductRequest(ProductRequestDTO productRequestDTO){
@@ -24,6 +24,32 @@ public class ProductMapper {
         productResponseDTO.setDescription(fakeStoreProductResponseDTO.getDescription());
         productResponseDTO.setCategory(fakeStoreProductResponseDTO.getCategory());
         productResponseDTO.setImage(fakeStoreProductResponseDTO.getImage());
+        return productResponseDTO;
+    }
+
+    public static ProductListResponseDTO convertProductsToProductListResponseDTO(List<Product> products){
+        ProductListResponseDTO productListResponseDTO = new ProductListResponseDTO();
+        for(Product p:products){
+            ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+            productResponseDTO.setId(p.getId());
+            productResponseDTO.setImage(p.getImage());
+            productResponseDTO.setTitle(p.getTitle());
+            productResponseDTO.setPrice(p.getPrice().getAmount());
+            productResponseDTO.setDescription(p.getDescription());
+            productResponseDTO.setCategory(p.getCategory().getCategoryName());
+            productListResponseDTO.getProducts().add(productResponseDTO);
+        }
+        return productListResponseDTO;
+    }
+
+    public static ProductResponseDTO convertProductToProductResponseDTO(Product p){
+        ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+        productResponseDTO.setId(p.getId());
+        productResponseDTO.setImage(p.getImage());
+        productResponseDTO.setTitle(p.getTitle());
+        productResponseDTO.setPrice(p.getPrice().getAmount());
+        productResponseDTO.setDescription(p.getDescription());
+        productResponseDTO.setCategory(p.getCategory().getCategoryName());
         return productResponseDTO;
     }
 }

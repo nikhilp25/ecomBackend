@@ -1,18 +1,20 @@
 package com.practice.EcomProductService.dto;
 
+import java.util.UUID;
+
 public class FakeStoreProductResponseDTO {
-    private int id;
+    private UUID id;
     private String title;
     private double price;
     private String category;
     private String description;
     private String image;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 import static com.practice.EcomProductService.mapper.ProductMapper.fakeProductResponseToProductResponse;
 import static com.practice.EcomProductService.mapper.ProductMapper.productRequestToFakeStoreProductRequest;
@@ -32,7 +33,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
         return productListResponseDTO;
     }
     @Override
-    public ProductResponseDTO getProductById(int id) {
+    public ProductResponseDTO getProductById(UUID id) {
        FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreAPIClient.getProductById(id);
         ProductResponseDTO productResponseDTO=fakeProductResponseToProductResponse(fakeStoreProductResponseDTO);
        return productResponseDTO;
@@ -53,5 +54,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
     public Product updateProduct(int id, Product updatedProduct){
         return null;
     }
+
+    public ProductResponseDTO findProductByTitle(String title){return null;}
 
 }

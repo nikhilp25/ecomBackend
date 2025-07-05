@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class FakeStoreApiClient {
@@ -43,7 +44,7 @@ public class FakeStoreApiClient {
         restTemplate.delete(productDeleteURL);
     }
 
-    public FakeStoreProductResponseDTO getProductById(int id){
+    public FakeStoreProductResponseDTO getProductById(UUID id){
         String getProductByUrlId = fakeStoreAPIURL + fakeStoreAPIPathProduct + id;
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductResponseDTO> productResponse =
