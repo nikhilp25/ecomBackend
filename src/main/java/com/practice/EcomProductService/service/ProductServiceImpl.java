@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductListResponseDTO getAllProducts() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAllProducts();
         ProductListResponseDTO productListResponseDTO = ProductMapper.convertProductsToProductListResponseDTO(products);
         return productListResponseDTO;
     }
@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseDTO findProductByTitle(String title) {
-        Product product = productRepository.findByTitle(title);
+        Product product = productRepository.findProductByTitleLike(title);
         ProductResponseDTO productResponseDTO = ProductMapper.convertProductToProductResponseDTO(product);
         return productResponseDTO;
     }

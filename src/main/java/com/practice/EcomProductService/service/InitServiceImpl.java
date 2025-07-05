@@ -1,5 +1,8 @@
 package com.practice.EcomProductService.service;
 
+import com.practice.EcomProductService.demo.Author;
+import com.practice.EcomProductService.demo.AuthorRepo;
+import com.practice.EcomProductService.demo.Book;
 import com.practice.EcomProductService.model.Category;
 import com.practice.EcomProductService.model.Order;
 import com.practice.EcomProductService.model.Price;
@@ -18,12 +21,14 @@ public class InitServiceImpl implements InitService{
     private PriceRepository priceRepository;
     private OrderRepository orderRepository;
     private CategoryRepository categoryRepository;
+    private AuthorRepo authorRepo;
 
-    public InitServiceImpl(ProductRepository productRepository, PriceRepository priceRepository, OrderRepository orderRepository, CategoryRepository categoryRepository){
+    public InitServiceImpl(ProductRepository productRepository, PriceRepository priceRepository, OrderRepository orderRepository, CategoryRepository categoryRepository, AuthorRepo authorRepo){
         this.productRepository = productRepository;
         this.orderRepository=orderRepository;
         this.priceRepository=priceRepository;
         this.categoryRepository=categoryRepository;
+        this.authorRepo=authorRepo;
     }
 
     @Override
@@ -79,5 +84,16 @@ public class InitServiceImpl implements InitService{
         Order order = new Order();
         order.setProducts(List.of(iphone, macbook, watch));
         order = orderRepository.save(order);
+
+        Author author = new Author("Ashok Kumar", null);
+        Book book1 = new Book("Book1", author);
+        Book book2 = new Book("Book1", author);
+        Book book3 = new Book("Book1", author);
+        author.setBooks(List.of(book1,book2,book3));
+        authorRepo.save(author);
+
+        Author savedAuthor = authorRepo.findById(1).get();
+        List<Book> books = savedAuthor.getBooks();
+        System.out.println(books);
     }
 }
